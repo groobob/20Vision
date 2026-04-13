@@ -12,8 +12,7 @@
         ShowInTaskbar="False"
         Title="20Vision">
     <Grid>
-        <TextBlock x:Name="MyTextBlock">Heading</TextBlock>
-        <!-- This button is clickable; empty areas pass input through -->
+        <TextBlock x:Name="counter" FontSize="100">i blow up</TextBlock>
         <Button Content="Click Me"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"

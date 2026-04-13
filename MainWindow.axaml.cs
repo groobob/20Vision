@@ -1,8 +1,8 @@
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
+using System;
+using System.Runtime.InteropServices;
 
 namespace _20Vision;
 
@@ -21,6 +21,21 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        StartCounter();
+    }
+
+    private void StartCounter()
+    {
+        var timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1)
+        };
+        timer.Tick += (s, e) =>
+        {
+            counter.Text = DateTime.Now.ToString();
+        };
+        timer.Start();
+        counter.Text = DateTime.Now.ToString();
     }
 
     private bool MakeClickThrough()
@@ -35,7 +50,6 @@ public partial class MainWindow : Window
 
     private void buh(object? sender, RoutedEventArgs e)
     {
-        MyTextBlock.Text = "Clicked!";
         MakeClickThrough();
     }
 }
