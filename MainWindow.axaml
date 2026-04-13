@@ -9,6 +9,7 @@
         TransparencyLevelHint="Transparent"
         SystemDecorations="None"
         Topmost="True"
+        ShowInTaskbar="False"
         Title="20Vision">
     <Grid>
         <TextBlock x:Name="MyTextBlock">Heading</TextBlock>
