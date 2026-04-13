@@ -4,6 +4,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="_20Vision.MainWindow"
+        WindowState="FullScreen"
+        Background="{x:Null}"
+        TransparencyLevelHint="Transparent"
+        SystemDecorations="None"
+        Topmost="True"
         Title="20Vision">
-    Welcome to buh!
+    <Grid>
+        <TextBlock x:Name="MyTextBlock">Heading</TextBlock>
+        <!-- This button is clickable; empty areas pass input through -->
+        <Button Content="Click Me"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="buh"/>
+    </Grid>
 </Window>
