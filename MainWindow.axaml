@@ -12,8 +12,9 @@
         ShowInTaskbar="False"
         Title="20Vision">
     <Grid>
-        <TextBlock x:Name="counter" FontSize="100">i blow up</TextBlock>
-        <Button Content="Click Me"
+        <TextBlock x:Name="counter" FontSize="100" TextElement.Foreground="Red">i blow up</TextBlock>
+        <Button Content="click through toggle"
+                x:Name="clickthrough"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Click="buh"/>

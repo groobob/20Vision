@@ -8,6 +8,9 @@ namespace _20Vision;
 
 public partial class MainWindow : Window
 {
+    // Singleton
+    public static MainWindow? Instance { get; private set; }
+
     // Win32 API imports
     [DllImport("user32.dll")]
     private static extern int GetWindowLong(IntPtr hwnd, int index);
@@ -18,8 +21,12 @@ public partial class MainWindow : Window
     private const int WS_EX_TRANSPARENT = 0x00000020;
     private const int WS_EX_LAYERED = 0x00080000;
 
+    public Button SettingsMenu => clickthrough;
+
     public MainWindow()
     {
+        Instance = this;
+
         InitializeComponent();
         StartCounter();
     }
@@ -38,18 +45,19 @@ public partial class MainWindow : Window
         counter.Text = DateTime.Now.ToString();
     }
 
-    private bool MakeClickThrough()
+    public bool ToggleClickThrough()
     {
         var handle = TryGetPlatformHandle()?.Handle;
         if (handle == null) return false;
 
         int style = GetWindowLong(handle.Value, GWL_EXSTYLE);
-        SetWindowLong(handle.Value, GWL_EXSTYLE, style | WS_EX_TRANSPARENT | WS_EX_LAYERED);
+        SetWindowLong(handle.Value, GWL_EXSTYLE, style ^ WS_EX_TRANSPARENT ^ WS_EX_LAYERED);
         return true;
     }
 
     private void buh(object? sender, RoutedEventArgs e)
     {
-        MakeClickThrough();
+        ToggleClickThrough();
+        clickthrough.IsVisible = false;
     }
 }
