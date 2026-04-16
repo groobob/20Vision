@@ -12,7 +12,23 @@
         ShowInTaskbar="False"
         Title="20Vision">
     <Grid>
-        <TextBlock x:Name="counter" FontSize="100" TextElement.Foreground="Red">i blow up</TextBlock>
+        
+        <Border x:Name="alert"
+                Background="#fc5656"
+                Width="100"
+                Height="100"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="20"
+                CornerRadius="10"
+                IsVisible="False">
+                    <TextBlock 
+                               FontSize="100"
+                               TextElement.Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">!
+                    </TextBlock>
+        </Border>
         <Button Content="click through toggle"
                 x:Name="clickthrough"
                 HorizontalAlignment="Center"

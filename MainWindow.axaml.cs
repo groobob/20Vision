@@ -39,14 +39,14 @@ public partial class MainWindow : Window
         };
         timer.Tick += (s, e) =>
         {
-            counter.Text = DateTime.Now.Second.ToString();
-            if (DateTime.Now.Second % 20 == 0)
+            alert.IsVisible = false;
+            if (DateTime.Now.Minute % 20 == 0)
             {
-                counter.Text = "balright";
+                alert.IsVisible = true;
             }
         };
         timer.Start();
-        counter.Text = DateTime.Now.Second.ToString();
+        alert.IsVisible = false;
     }
 
     public bool ToggleClickThrough()
