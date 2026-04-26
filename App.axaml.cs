@@ -31,7 +31,7 @@ public partial class App : Application
 
     private void settings(object? sender, EventArgs e)
     {
-        MainWindow.Instance?.ToggleClickThrough();
+        MainWindow.Instance?.SetClickThrough(false);
         MainWindow.Instance?.SettingsMenu.IsVisible = true;
     }
 }
