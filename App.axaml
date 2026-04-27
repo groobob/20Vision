@@ -13,8 +13,8 @@
                 ToolTipText="Avalonia Tray Icon ToolTip">
         <TrayIcon.Menu>
           <NativeMenu>
-            <NativeMenuItem Header="settings" Click="settings"/>
-              <NativeMenuItem Header="exit" Click="bye"/>
+            <NativeMenuItem Header="Settings" Click="EnableSettingsMenu"/>
+              <NativeMenuItem Header="Exit" Click="Exit"/>
           </NativeMenu>
         </TrayIcon.Menu>
       </TrayIcon>

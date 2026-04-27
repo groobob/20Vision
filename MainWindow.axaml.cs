@@ -28,8 +28,6 @@ public partial class MainWindow : Window
     private const int WS_EX_TOOLWINDOW = 0x00000080;
     private const int WS_EX_APPWINDOW = 0x00040000;
 
-    public Button SettingsMenu => clickthrough;
-
     public MainWindow()
     {
         Instance = this;
@@ -48,7 +46,7 @@ public partial class MainWindow : Window
         timer.Tick += (s, e) =>
         {
             alert.IsVisible = false;
-            if (DateTime.Now.Minute % 20 == 0)
+            if (DateTime.Now.Minute % 52 == 0 && DateTime.Now.Second <= 5)
             {
                 alert.IsVisible = true;
             }
@@ -86,9 +84,20 @@ public partial class MainWindow : Window
         };
     }
 
-    private void buh(object? sender, RoutedEventArgs e)
+    private void DisableSettingsMenu(object? sender, RoutedEventArgs e)
     {
         SetClickThrough(true);
-        clickthrough.IsVisible = false;
+        SettingsMenu.IsVisible = false;
+    }
+
+    public void EnableSettingsMenu()
+    {
+        SetClickThrough(false);
+        SettingsMenu.IsVisible = true;
+    }
+
+    private void Exit(object? sender, RoutedEventArgs e)
+    {
+        Environment.Exit(0);
     }
 }

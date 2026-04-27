@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using System;
 
@@ -24,14 +25,13 @@ public partial class App : Application
         base.OnFrameworkInitializationCompleted();
     }
 
-    private void bye(object? sender, EventArgs e)
+    private void Exit(object? sender, EventArgs e)
     {
         Environment.Exit(0);
     }
 
-    private void settings(object? sender, EventArgs e)
+    private void EnableSettingsMenu(object? sender, EventArgs e)
     {
-        MainWindow.Instance?.SetClickThrough(false);
-        MainWindow.Instance?.SettingsMenu.IsVisible = true;
+        MainWindow.Instance?.EnableSettingsMenu();
     }
 }
