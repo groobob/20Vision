@@ -6,7 +6,6 @@ using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 
 namespace _20Vision;
-
 public partial class MainWindow : Window
 {
     // Singleton
@@ -26,15 +25,44 @@ public partial class MainWindow : Window
     private const int WS_EX_TRANSPARENT = 0x00000020;
     private const int WS_EX_LAYERED = 0x00080000;
     private const int WS_EX_TOOLWINDOW = 0x00000080;
-    private const int WS_EX_APPWINDOW = 0x00040000;
+
+    private Button[] frequencyButtons;
+    private Button[] durationButtons;
+
+    private int alertFrequency = 20;
+    private int alertDuration = 10;
 
     public MainWindow()
     {
         Instance = this;
 
         InitializeComponent();
+        SetupSettings();
         HideFromEverything();
         StartCounter();
+    }
+
+    private void SetupSettings()
+    {
+        frequencyButtons = new Button[] { frequencySettingButton1, frequencySettingButton2, frequencySettingButton3 };
+        frequencyButtons[0].Click += (s, e) => SetAlertFrequency(15);
+        frequencyButtons[1].Click += (s, e) => SetAlertFrequency(20);
+        frequencyButtons[2].Click += (s, e) => SetAlertFrequency(30);
+
+        durationButtons = new Button[] { durationSettingButton1, durationSettingButton2, durationSettingButton3 };
+        durationButtons[0].Click += (s, e) => SetAlertDuration(5);
+        durationButtons[1].Click += (s, e) => SetAlertDuration(10);
+        durationButtons[2].Click += (s, e) => SetAlertDuration(20);
+    }
+
+    private void SetAlertFrequency(int num)
+    {
+        alertFrequency = num;
+    }
+
+    private void SetAlertDuration(int num)
+    {
+        alertDuration = num;
     }
 
     private void StartCounter()
@@ -46,7 +74,7 @@ public partial class MainWindow : Window
         timer.Tick += (s, e) =>
         {
             alert.IsVisible = false;
-            if (DateTime.Now.Minute % 52 == 0 && DateTime.Now.Second <= 5)
+            if (DateTime.Now.Minute % alertFrequency == 0 && DateTime.Now.Second <= alertDuration)
             {
                 alert.IsVisible = true;
             }
