@@ -2,8 +2,9 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
 using System;
-using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
+using System.Text.Json;
+using System.IO;
 
 namespace _20Vision;
 public partial class MainWindow : Window
@@ -26,24 +27,52 @@ public partial class MainWindow : Window
     private const int WS_EX_LAYERED = 0x00080000;
     private const int WS_EX_TOOLWINDOW = 0x00000080;
 
+    public class Settings
+    {
+        public int alertFrequency { get; set; } = 20;
+        public int alertDuration { get; set; } = 10;
+    }
+
+    public string settingsPath;
+    public Settings settings = new Settings();
+
     private Button[] frequencyButtons;
     private Button[] durationButtons;
-
-    private int alertFrequency = 20;
-    private int alertDuration = 10;
 
     public MainWindow()
     {
         Instance = this;
 
         InitializeComponent();
-        SetupSettings();
+        SetupSettingsInteraction();
+        LoadSettings();
         HideFromEverything();
         StartCounter();
     }
-
-    private void SetupSettings()
+    
+    public void SaveSettings()
     {
+        Directory.CreateDirectory(Path.GetDirectoryName(settingsPath)!);
+        string json = JsonSerializer.Serialize(settings, new JsonSerializerOptions{ WriteIndented = true });
+        File.WriteAllText(settingsPath, json);
+    }
+
+    private void LoadSettings()
+    {
+        if (File.Exists(settingsPath))
+        {
+            string json = File.ReadAllText(settingsPath);
+            Settings loadedSettings = JsonSerializer.Deserialize<Settings>(json) ?? new Settings();
+
+            settings.alertFrequency = loadedSettings.alertFrequency;
+            settings.alertDuration = loadedSettings.alertDuration;
+        }
+    }
+
+    private void SetupSettingsInteraction()
+    {
+        settingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "20Vision", "settings.json");
+
         frequencyButtons = new Button[] { frequencySettingButton1, frequencySettingButton2, frequencySettingButton3 };
         frequencyButtons[0].Click += (s, e) => SetAlertFrequency(15);
         frequencyButtons[1].Click += (s, e) => SetAlertFrequency(20);
@@ -57,12 +86,12 @@ public partial class MainWindow : Window
 
     private void SetAlertFrequency(int num)
     {
-        alertFrequency = num;
+        settings.alertFrequency = num;
     }
 
     private void SetAlertDuration(int num)
     {
-        alertDuration = num;
+        settings.alertDuration = num;
     }
 
     private void StartCounter()
@@ -74,7 +103,7 @@ public partial class MainWindow : Window
         timer.Tick += (s, e) =>
         {
             alert.IsVisible = false;
-            if (DateTime.Now.Minute % alertFrequency == 0 && DateTime.Now.Second <= alertDuration)
+            if (DateTime.Now.Minute % settings.alertFrequency == 0 && DateTime.Now.Second <= settings.alertDuration)
             {
                 alert.IsVisible = true;
             }
@@ -126,6 +155,7 @@ public partial class MainWindow : Window
 
     private void Exit(object? sender, RoutedEventArgs e)
     {
+        SaveSettings();
         Environment.Exit(0);
     }
 }

@@ -27,6 +27,7 @@ public partial class App : Application
 
     private void Exit(object? sender, EventArgs e)
     {
+        MainWindow.Instance?.SaveSettings();
         Environment.Exit(0);
     }
 
