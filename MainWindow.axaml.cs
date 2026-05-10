@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using Avalonia.Media;
 using System;
 using System.Runtime.InteropServices;
 using System.Text.Json;
@@ -31,6 +32,11 @@ public partial class MainWindow : Window
     {
         public int alertFrequency { get; set; } = 20;
         public int alertDuration { get; set; } = 10;
+
+        public bool runOnStartup { get; set; } = false;
+        public bool displayAlertTimer { get; set; } = false;
+        public bool intrusiveAlert { get; set; } = false;
+        public bool buh { get; set; } = false;
     }
 
     public string settingsPath;
@@ -66,7 +72,40 @@ public partial class MainWindow : Window
 
             settings.alertFrequency = loadedSettings.alertFrequency;
             settings.alertDuration = loadedSettings.alertDuration;
+            settings.runOnStartup = loadedSettings.runOnStartup;
+            settings.displayAlertTimer = loadedSettings.displayAlertTimer;
+            settings.intrusiveAlert = loadedSettings.intrusiveAlert;
+            settings.buh = loadedSettings.buh;
         }
+
+        switch (settings.alertFrequency)
+        {
+            case 15:
+                frequencyButtons[0].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 20:
+                frequencyButtons[1].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 30:
+                frequencyButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+        }
+        switch (settings.alertDuration)
+        {
+            case 5:
+                durationButtons[0].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 10:
+                durationButtons[1].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 20:
+                durationButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+        }
+        runOnStartUpCheck.IsChecked = settings.runOnStartup;
+        displayAlertTimerCheck.IsChecked = settings.displayAlertTimer;
+        intrusiveAlertCheck.IsChecked = settings.intrusiveAlert;
+        buhCheck.IsChecked = settings.buh;
     }
 
     private void SetupSettingsInteraction()
@@ -74,24 +113,83 @@ public partial class MainWindow : Window
         settingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "20Vision", "settings.json");
 
         frequencyButtons = new Button[] { frequencySettingButton1, frequencySettingButton2, frequencySettingButton3 };
+        frequencyButtons[0].Content = "15min";
+        frequencyButtons[1].Content = "20min";
+        frequencyButtons[2].Content = "30min";
         frequencyButtons[0].Click += (s, e) => SetAlertFrequency(15);
         frequencyButtons[1].Click += (s, e) => SetAlertFrequency(20);
         frequencyButtons[2].Click += (s, e) => SetAlertFrequency(30);
 
         durationButtons = new Button[] { durationSettingButton1, durationSettingButton2, durationSettingButton3 };
+        durationButtons[0].Content = "5sec";
+        durationButtons[1].Content = "10sec";
+        durationButtons[2].Content = "20sec";
         durationButtons[0].Click += (s, e) => SetAlertDuration(5);
         durationButtons[1].Click += (s, e) => SetAlertDuration(10);
         durationButtons[2].Click += (s, e) => SetAlertDuration(20);
+
+        runOnStartUpCheck.IsCheckedChanged += (s, e) => { settings.runOnStartup = runOnStartUpCheck.IsChecked == true; };
+        displayAlertTimerCheck.IsCheckedChanged += (s, e) => { settings.displayAlertTimer = displayAlertTimerCheck.IsChecked == true; };
+        intrusiveAlertCheck.IsCheckedChanged += (s, e) => { settings.intrusiveAlert = intrusiveAlertCheck.IsChecked == true; };
+        buhCheck.IsCheckedChanged += (s, e) => { settings.buh = buhCheck.IsChecked == true; };
     }
 
     private void SetAlertFrequency(int num)
     {
+        switch (settings.alertFrequency)
+        {
+            case 15:
+                frequencyButtons[0].Background = new SolidColorBrush(Color.Parse("#33000000"));
+                break;
+            case 20:
+                frequencyButtons[1].Background = new SolidColorBrush(Color.Parse("#33000000"));
+                break;
+            case 30:
+                frequencyButtons[2].Background = new SolidColorBrush(Color.Parse("#33000000"));
+                break;
+        }
         settings.alertFrequency = num;
+        switch (num)
+        {
+            case 15:
+                frequencyButtons[0].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 20:
+                frequencyButtons[1].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 30:
+                frequencyButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+        }
     }
 
     private void SetAlertDuration(int num)
     {
+        switch (settings.alertDuration)
+        {
+            case 5:
+                durationButtons[0].Background = new SolidColorBrush(Color.Parse("#33000000"));
+                break;
+            case 10:
+                durationButtons[1].Background = new SolidColorBrush(Color.Parse("#33000000"));
+                break;
+            case 20:
+                durationButtons[2].Background = new SolidColorBrush(Color.Parse("#33000000"));
+                break;
+        }
         settings.alertDuration = num;
+        switch (num)
+        {
+            case 5:
+                durationButtons[0].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 10:
+                durationButtons[1].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+            case 20:
+                durationButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
+                break;
+        }
     }
 
     private void StartCounter()
