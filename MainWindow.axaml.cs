@@ -104,6 +104,7 @@ public partial class MainWindow : Window
                 durationButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
                 break;
         }
+        alertTimerText.IsVisible = false;
         runOnStartUpCheck.IsChecked = settings.runOnStartup;
         displayAlertTimerCheck.IsChecked = settings.displayAlertTimer;
         intrusiveAlertCheck.IsChecked = settings.intrusiveAlert;
@@ -131,9 +132,17 @@ public partial class MainWindow : Window
         durationButtons[2].Click += (s, e) => SetAlertDuration(20);
 
         runOnStartUpCheck.IsCheckedChanged += (s, e) => { settings.runOnStartup = runOnStartUpCheck.IsChecked == true; };
-        displayAlertTimerCheck.IsCheckedChanged += (s, e) => { settings.displayAlertTimer = displayAlertTimerCheck.IsChecked == true; };
+        displayAlertTimerCheck.IsCheckedChanged += (s, e) => { UpdateAlertTimer(displayAlertTimerCheck.IsChecked == true); };
         intrusiveAlertCheck.IsCheckedChanged += (s, e) => { UpdateIntrusiveAlert(intrusiveAlertCheck.IsChecked == true); };
         buhCheck.IsCheckedChanged += (s, e) => { UpdateBuh(buhCheck.IsChecked == true); };
+    }
+
+    private void UpdateAlertTimer(bool check)
+    {
+        settings.displayAlertTimer = check;
+
+        if (check) alertTimerText.IsVisible = true;
+        else alertTimerText.IsVisible = false;
     }
 
     private void UpdateIntrusiveAlert(bool check)
@@ -149,6 +158,9 @@ public partial class MainWindow : Window
             alert.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
             alert.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
             alertText.FontSize = screen != null ? screen.WorkingArea.Height * 0.9 : 750;
+            alertTimerText.FontSize = screen != null ? screen.WorkingArea.Height * 0.15 : 112.5;
+            alertTimerText.Margin = new Avalonia.Thickness(50, 20);
+
         }
         else
         {
@@ -157,6 +169,8 @@ public partial class MainWindow : Window
             alert.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right;
             alert.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top;
             alertText.FontSize = 100;
+            alertTimerText.FontSize = 15;
+            alertTimerText.Margin = new Avalonia.Thickness(5, 5);
         }
     }
 
@@ -248,8 +262,9 @@ public partial class MainWindow : Window
         timer.Tick += (s, e) =>
         {
             alert.IsVisible = false;
-            if (DateTime.Now.Minute % settings.alertFrequency == 0 && DateTime.Now.Second <= settings.alertDuration)
+            if (DateTime.Now.Minute % settings.alertFrequency == 0 && DateTime.Now.Second < settings.alertDuration)
             {
+                alertTimerText.Text = (settings.alertDuration - DateTime.Now.Second).ToString();
                 alert.IsVisible = true;
             }
         };

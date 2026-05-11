@@ -21,12 +21,21 @@
                 Margin="20"
                 CornerRadius="10"
                 IsVisible="False">
-            <TextBlock x:Name="alertText"
-                       FontSize="100"
-                       TextElement.Foreground="White"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center">!
-            </TextBlock>
+            <Grid>
+                <TextBlock x:Name="alertText"
+                           FontSize="100"
+                           TextElement.Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">!
+                </TextBlock>
+                <TextBlock x:Name="alertTimerText"
+                           FontSize="15"
+                           TextElement.Foreground="White"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom"
+                           Margin="5">
+                </TextBlock>
+            </Grid>
         </Border>
         <Border x:Name="SettingsMenu"
                 Background="#33000000">
