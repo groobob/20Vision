@@ -130,8 +130,32 @@ public partial class MainWindow : Window
 
         runOnStartUpCheck.IsCheckedChanged += (s, e) => { settings.runOnStartup = runOnStartUpCheck.IsChecked == true; };
         displayAlertTimerCheck.IsCheckedChanged += (s, e) => { settings.displayAlertTimer = displayAlertTimerCheck.IsChecked == true; };
-        intrusiveAlertCheck.IsCheckedChanged += (s, e) => { settings.intrusiveAlert = intrusiveAlertCheck.IsChecked == true; };
+        intrusiveAlertCheck.IsCheckedChanged += (s, e) => { UpdateIntrusiveAlert(intrusiveAlertCheck.IsChecked == true); };
         buhCheck.IsCheckedChanged += (s, e) => { settings.buh = buhCheck.IsChecked == true; };
+    }
+
+    private void UpdateIntrusiveAlert(bool check)
+    {
+        settings.intrusiveAlert = check;
+
+        var screen = Screens.Primary;
+
+        if (check)
+        {
+            alert.Width = screen != null ? screen.WorkingArea.Width * 0.9 : 750;
+            alert.Height = screen != null ? screen.WorkingArea.Height * 0.9 : 750;
+            alert.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+            alert.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
+            alertText.FontSize = screen != null ? screen.WorkingArea.Height * 0.9 : 750;
+        }
+        else
+        {
+            alert.Width = 100;
+            alert.Height = 100;
+            alert.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right;
+            alert.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top;
+            alertText.FontSize = 100;
+        }
     }
 
     private void SetAlertFrequency(int num)
