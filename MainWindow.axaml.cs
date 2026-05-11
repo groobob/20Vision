@@ -1,11 +1,13 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Threading;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
+using Avalonia.Threading;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using System.IO;
 
 namespace _20Vision;
 public partial class MainWindow : Window
@@ -131,7 +133,7 @@ public partial class MainWindow : Window
         runOnStartUpCheck.IsCheckedChanged += (s, e) => { settings.runOnStartup = runOnStartUpCheck.IsChecked == true; };
         displayAlertTimerCheck.IsCheckedChanged += (s, e) => { settings.displayAlertTimer = displayAlertTimerCheck.IsChecked == true; };
         intrusiveAlertCheck.IsCheckedChanged += (s, e) => { UpdateIntrusiveAlert(intrusiveAlertCheck.IsChecked == true); };
-        buhCheck.IsCheckedChanged += (s, e) => { settings.buh = buhCheck.IsChecked == true; };
+        buhCheck.IsCheckedChanged += (s, e) => { UpdateBuh(buhCheck.IsChecked == true); };
     }
 
     private void UpdateIntrusiveAlert(bool check)
@@ -155,6 +157,27 @@ public partial class MainWindow : Window
             alert.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right;
             alert.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Top;
             alertText.FontSize = 100;
+        }
+    }
+
+    private void UpdateBuh(bool check)
+    {
+        settings.buh = check;
+
+        if (check)
+        {
+            var uri = new Uri("avares://20Vision/Assets/buh.png");
+            alert.Background = new ImageBrush
+            {
+                Source = new Bitmap(AssetLoader.Open(uri)),
+                Stretch = Stretch.UniformToFill,
+                AlignmentX = AlignmentX.Center,
+                AlignmentY = AlignmentY.Center
+            };
+        }
+        else
+        {
+            alert.Background = new SolidColorBrush(Color.Parse("#fc5656"));
         }
     }
 

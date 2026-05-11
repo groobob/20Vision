@@ -8,6 +8,12 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Assets\buh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\buh.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.3.12" />
