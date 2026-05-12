@@ -184,7 +184,7 @@ public partial class MainWindow : Window
             alert.Background = new ImageBrush
             {
                 Source = new Bitmap(AssetLoader.Open(uri)),
-                Stretch = Stretch.UniformToFill,
+                Stretch = Stretch.Fill,
                 AlignmentX = AlignmentX.Center,
                 AlignmentY = AlignmentY.Center
             };
