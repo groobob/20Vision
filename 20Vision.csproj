@@ -7,12 +7,15 @@
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	<ApplicationIcon>Assets\20vision.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\20vision.ico" />
     <None Remove="Assets\buh.png" />
   </ItemGroup>
   <ItemGroup>
-    <AvaloniaResource Include="Assets\buh.png" />
+    <AvaloniaResource Include="Assets\20vision.ico" />
+	  <AvaloniaResource Include="Assets\buh.png" />
   </ItemGroup>
 
   <ItemGroup>

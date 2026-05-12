@@ -9,7 +9,7 @@
     </Application.Styles>
     <TrayIcon.Icons>
     <TrayIcons>
-      <TrayIcon 
+      <TrayIcon Icon="avares://20Vision/Assets/20vision.ico"
                 ToolTipText="Avalonia Tray Icon ToolTip">
         <TrayIcon.Menu>
           <NativeMenu>

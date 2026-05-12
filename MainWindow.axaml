@@ -10,7 +10,8 @@
         SystemDecorations="None"
         Topmost="True"
         ShowInTaskbar="False"
-        Title="20Vision">
+        Title="20Vision"
+        Icon="/Assets/20vision.ico">
     <Grid>
         <Border x:Name="alert"
                 Background="#fc5656"
