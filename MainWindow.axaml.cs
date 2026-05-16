@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using Microsoft.Win32;
 
 namespace _20Vision;
 public partial class MainWindow : Window
@@ -131,10 +132,31 @@ public partial class MainWindow : Window
         durationButtons[1].Click += (s, e) => SetAlertDuration(10);
         durationButtons[2].Click += (s, e) => SetAlertDuration(20);
 
-        runOnStartUpCheck.IsCheckedChanged += (s, e) => { settings.runOnStartup = runOnStartUpCheck.IsChecked == true; };
+        runOnStartUpCheck.IsCheckedChanged += (s, e) => { UpdateStartup(runOnStartUpCheck.IsChecked == true); };
         displayAlertTimerCheck.IsCheckedChanged += (s, e) => { UpdateAlertTimer(displayAlertTimerCheck.IsChecked == true); };
         intrusiveAlertCheck.IsCheckedChanged += (s, e) => { UpdateIntrusiveAlert(intrusiveAlertCheck.IsChecked == true); };
         buhCheck.IsCheckedChanged += (s, e) => { UpdateBuh(buhCheck.IsChecked == true); };
+
+        SetClickThrough(true);
+        SettingsMenu.IsVisible = false;
+    }
+
+    private void UpdateStartup(bool check)
+    {
+        using var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", writable: true);
+
+        if (key == null) return;
+
+        settings.runOnStartup = check;
+
+        if(check)
+        {
+            string exePath = Environment.ProcessPath ?? System.Reflection.Assembly.GetExecutingAssembly().Location; key.SetValue("20Vision", $"\"{exePath}\"");
+        }
+        else
+        {
+            key.DeleteValue("20Vision", throwOnMissingValue: false);
+        }
     }
 
     private void UpdateAlertTimer(bool check)
