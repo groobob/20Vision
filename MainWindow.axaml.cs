@@ -106,7 +106,7 @@ public partial class MainWindow : Window
                 break;
         }
         alertTimerText.IsVisible = false;
-        runOnStartUpCheck.IsChecked = settings.runOnStartup;
+        runOnStartUpCheck.IsChecked = IsStartupEnabled();
         displayAlertTimerCheck.IsChecked = settings.displayAlertTimer;
         intrusiveAlertCheck.IsChecked = settings.intrusiveAlert;
         buhCheck.IsChecked = settings.buh;
@@ -157,6 +157,13 @@ public partial class MainWindow : Window
         {
             key.DeleteValue("20Vision", throwOnMissingValue: false);
         }
+    }
+
+    public static bool IsStartupEnabled()
+    {
+        using var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
+
+        return key?.GetValue("20Vision") != null;
     }
 
     private void UpdateAlertTimer(bool check)
