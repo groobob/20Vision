@@ -1,5 +1,5 @@
 # 20Vision
-The 20 20 20 rule is a common rule that eye doctors recommend to patients to take care of their eye health. The rule states that every 20 minutes of screen time, you should look somewhere 20 meters away for 20 seconds. For those who use their devicees often, trying to follow this rule is difficult due to the short 20minute window between each break. 20Vision is an overlay app that serves to help gently (or forcefully) remind users to adhere to this rule for those who take their eye health seriously.
+The 20-20-20 rule is a common rule that eye doctors recommend to patients to take care of their eye health. The rule states that every 20 minutes of screen time, you should look somewhere 20 meters away for 20 seconds. For those who use their devicees often, trying to follow this rule is difficult due to the short 20minute window between each break. 20Vision is an overlay app that serves to help gently (or forcefully) remind users to adhere to this rule for those who take their eye health seriously.
 
 ### Features
 - Setting alert duration and frequencies
