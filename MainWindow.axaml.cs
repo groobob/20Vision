@@ -172,6 +172,8 @@ public partial class MainWindow : Window
 
         if (check) alertTimerText.IsVisible = true;
         else alertTimerText.IsVisible = false;
+
+        SaveSettings();
     }
 
     private void UpdateIntrusiveAlert(bool check)
@@ -201,6 +203,8 @@ public partial class MainWindow : Window
             alertTimerText.FontSize = 15;
             alertTimerText.Margin = new Avalonia.Thickness(5, 5);
         }
+
+        SaveSettings();
     }
 
     private void UpdateBuh(bool check)
@@ -222,6 +226,8 @@ public partial class MainWindow : Window
         {
             alert.Background = new SolidColorBrush(Color.Parse("#fc5656"));
         }
+
+        SaveSettings();
     }
 
     private void SetAlertFrequency(int num)
@@ -251,6 +257,8 @@ public partial class MainWindow : Window
                 frequencyButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
                 break;
         }
+
+        SaveSettings();
     }
 
     private void SetAlertDuration(int num)
@@ -280,6 +288,8 @@ public partial class MainWindow : Window
                 durationButtons[2].Background = new SolidColorBrush(Color.Parse("#FF000000"));
                 break;
         }
+
+        SaveSettings();
     }
 
     private void StartCounter()
