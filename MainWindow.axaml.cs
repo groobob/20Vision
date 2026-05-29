@@ -83,6 +83,7 @@ public partial class MainWindow : Window
             settings.displayAlertTimer = loadedSettings.displayAlertTimer;
             settings.intrusiveAlert = loadedSettings.intrusiveAlert;
             settings.buh = loadedSettings.buh;
+            settings.isFirstLaunch = loadedSettings.isFirstLaunch;
         }
 
         switch (settings.alertFrequency)
