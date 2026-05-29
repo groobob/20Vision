@@ -235,5 +235,19 @@
                 </Grid>
             </Border>
         </Border>
+        <Border x:Name="VersionText"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                BorderThickness="2"
+                Margin="25"
+                Padding="5 2 5 2"
+                CornerRadius="2"
+                Background="#33333333"
+                BorderBrush="#66FFFFFF">
+			<TextBlock FontSize="18"
+                       TextElement.Foreground="White"
+                       >Ver 1.1
+            </TextBlock>
+        </Border>
     </Grid>
 </Window>

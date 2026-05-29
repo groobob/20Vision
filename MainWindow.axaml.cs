@@ -139,6 +139,7 @@ public partial class MainWindow : Window
 
         SetClickThrough(true);
         SettingsMenu.IsVisible = false;
+        VersionText.IsVisible = false;
     }
 
     private void UpdateStartup(bool check)
@@ -344,12 +345,14 @@ public partial class MainWindow : Window
     {
         SetClickThrough(true);
         SettingsMenu.IsVisible = false;
+        VersionText.IsVisible = false;
     }
 
     public void EnableSettingsMenu()
     {
         SetClickThrough(false);
         SettingsMenu.IsVisible = true;
+        VersionText.IsVisible = true;
     }
 
     private void Exit(object? sender, RoutedEventArgs e)
