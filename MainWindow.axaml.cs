@@ -40,11 +40,14 @@ public partial class MainWindow : Window
         public bool displayAlertTimer { get; set; } = false;
         public bool intrusiveAlert { get; set; } = false;
         public bool buh { get; set; } = false;
+
+        public bool isFirstLaunch { get; set; } = true;
     }
 
     public string settingsPath;
     public Settings settings = new Settings();
 
+    private int tutorialStage = 0;
     private Button[] frequencyButtons;
     private Button[] durationButtons;
 
@@ -55,6 +58,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         SetupSettingsInteraction();
         LoadSettings();
+        WelcomeTutorial();
         HideFromEverything();
         StartCounter();
     }
@@ -112,6 +116,52 @@ public partial class MainWindow : Window
         buhCheck.IsChecked = settings.buh;
     }
 
+    private void WelcomeTutorial()
+    {
+        if(settings.isFirstLaunch)
+        {
+            settings.isFirstLaunch = false;
+
+            SetClickThrough(false);
+
+            welcomeTutorial.IsVisible = true;
+            tutorialBody1.IsVisible = true;
+
+            tutorialButton1.Click += (s, e) => { ProceedTutorial(); };
+            tutorialButton2.Click += (s, e) => { ProceedTutorial(); };
+            tutorialButton3.Click += (s, e) => { ProceedTutorial(); };
+        }
+    }
+
+    private void ProceedTutorial()
+    {
+        switch (tutorialStage)
+        {
+            case 0:
+            {
+                tutorialBody1.IsVisible = false;
+                tutorialBody2.IsVisible = true;
+                tutorialStage++;
+                break;
+            }
+            case 1:
+            {
+                tutorialBody2.IsVisible = false;
+                tutorialBody3.IsVisible = true;
+                tutorialStage++;
+                break;
+            }
+            case 2:
+            {
+                tutorialBody3.IsVisible = false;
+                welcomeTutorial.IsVisible = false;
+                SetClickThrough(true);
+                SaveSettings();
+                break;
+            }
+        }
+    }
+
     private void SetupSettingsInteraction()
     {
         settingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "20Vision", "settings.json");
@@ -138,8 +188,8 @@ public partial class MainWindow : Window
         buhCheck.IsCheckedChanged += (s, e) => { UpdateBuh(buhCheck.IsChecked == true); };
 
         SetClickThrough(true);
-        SettingsMenu.IsVisible = false;
-        VersionText.IsVisible = false;
+        settingsMenu.IsVisible = false;
+        versionText.IsVisible = false;
     }
 
     private void UpdateStartup(bool check)
@@ -344,15 +394,15 @@ public partial class MainWindow : Window
     private void DisableSettingsMenu(object? sender, RoutedEventArgs e)
     {
         SetClickThrough(true);
-        SettingsMenu.IsVisible = false;
-        VersionText.IsVisible = false;
+        settingsMenu.IsVisible = false;
+        versionText.IsVisible = false;
     }
 
     public void EnableSettingsMenu()
     {
         SetClickThrough(false);
-        SettingsMenu.IsVisible = true;
-        VersionText.IsVisible = true;
+        settingsMenu.IsVisible = true;
+        versionText.IsVisible = true;
     }
 
     private void Exit(object? sender, RoutedEventArgs e)

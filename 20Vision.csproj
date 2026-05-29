@@ -11,11 +11,15 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\20vision.ico" />
+    <None Remove="Assets\AlertTutorial.png" />
     <None Remove="Assets\buh.png" />
+    <None Remove="Assets\SystemTrayTutorial.png" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\20vision.ico" />
+    <AvaloniaResource Include="Assets\AlertTutorial.png" />
 	  <AvaloniaResource Include="Assets\buh.png" />
+	  <AvaloniaResource Include="Assets\SystemTrayTutorial.png" />
   </ItemGroup>
 
   <ItemGroup>

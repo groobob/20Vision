@@ -38,7 +38,116 @@
                 </TextBlock>
             </Grid>
         </Border>
-        <Border x:Name="SettingsMenu"
+        <Border x:Name="welcomeTutorial"
+                Background="#99000000"
+                IsVisible="False">
+            <Grid>
+                <Border x:Name="tutorialBody1"
+                        Background="#33333333"
+                        CornerRadius="10"
+                        Width="300"
+                        Height="290"
+                        BorderBrush="#66FFFFFF"
+                        BorderThickness="2"
+                        IsVisible="False">
+                    <Grid>
+                        <StackPanel>
+					        <TextBlock FontSize="20"
+                                   Margin="20 10 20 10"
+                                   TextElement.Foreground="White"
+                                   HorizontalAlignment="Stretch"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center">Welcome to 20Vision!
+                            </TextBlock>
+                            <TextBlock FontSize="15"
+                                   Margin="20 0 20 0"
+                                   TextElement.Foreground="#EEEEEE"
+                                   HorizontalAlignment="Stretch"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center">The 20-20-20 rule asks that after 20 minutes of screentime, users should take a look outside 20 meters away for 20 seconds to reduce eye strain. 20Vision is developed to help people adhere to the 20-20-20 rule, a rule that is widely recommended by eye doctors but is unfortunately very easy to forget however
+                            </TextBlock>
+                        </StackPanel>
+                        <Button x:Name="tutorialButton1"
+                                Content="Next"
+                                TextElement.Foreground="White"
+                                Margin="10"
+                                Background="#33000000"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                BorderBrush="#66FFFFFF"
+                                BorderThickness="1"/>
+                    </Grid>
+                </Border>
+                <Border x:Name="tutorialBody2"
+                        Background="#33333333"
+                        CornerRadius="10"
+                        Width="300"
+                        Height="360"
+                        BorderBrush="#66FFFFFF"
+                        BorderThickness="2"
+                        IsVisible="False">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock FontSize="15"
+                                   Margin="20"
+                                   TextElement.Foreground="#EEEEEE"
+                                   HorizontalAlignment="Stretch"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"> 20Vision is an overlay app that alerts you every 20 (customizable) minutes to take a look outside. It stays mainly unintrusive, unless chosen otherwise and was made to be relatively subtle as to not become a disturbance
+                            </TextBlock>
+                            <Image Source="avares://20Vision/Assets/AlertTutorial.png"
+                                   Width="128"
+                                   Height="128"/>
+                        </StackPanel>
+                        <Button x:Name="tutorialButton2"
+                                Content="Next"
+                                TextElement.Foreground="White"
+                                Margin="10"
+                                Background="#33000000"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                BorderBrush="#66FFFFFF"
+                                BorderThickness="1"/>
+                    </Grid>
+                </Border>
+                <Border x:Name="tutorialBody3"
+                        Background="#33333333"
+                        CornerRadius="10"
+                        Margin="0 0 150 60"
+                        Width="300"
+                        Height="370"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        BorderBrush="#66FFFFFF"
+                        BorderThickness="2"
+                        IsVisible="False">
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock FontSize="15"
+                                   Margin="20"
+                                   TextElement.Foreground="#EEEEEE"
+                                   HorizontalAlignment="Stretch"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center">The app stays minimized to your system tray here. To exit the app or adjust settings, right click the app icon and go from there
+                            </TextBlock>
+                            <Image Source="avares://20Vision/Assets/SystemTrayTutorial.png"
+                                   Width="256"
+                                   Height="192"/>
+                        </StackPanel>
+                        <Button x:Name="tutorialButton3"
+                                Content="Got it"
+                                TextElement.Foreground="White"
+                                Margin="10"
+                                Background="#33000000"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                BorderBrush="#66FFFFFF"
+                                BorderThickness="1"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border x:Name="settingsMenu"
                 Background="#33000000">
             <Border Background="#33333333"
                     CornerRadius="10"
@@ -235,14 +344,14 @@
                 </Grid>
             </Border>
         </Border>
-        <Border x:Name="VersionText"
+        <Border x:Name="versionText"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 BorderThickness="2"
                 Margin="25"
                 Padding="5 2 5 2"
                 CornerRadius="2"
-                Background="#33333333"
+                Background="#99333333"
                 BorderBrush="#66FFFFFF">
 			<TextBlock FontSize="18"
                        TextElement.Foreground="White"
