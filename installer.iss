@@ -1,10 +1,10 @@
 [Setup]
 AppName=20Vision
-AppVersion=1.0.0
+AppVersion=1.1
 AppPublisher=groobob
 DefaultDirName={autopf}\20Vision
 DefaultGroupName=20Vision
-OutputBaseFilename=20Vision-v1.0.0-setup-win-x64
+OutputBaseFilename=20Vision-v1.1-setup-win-x64
 OutputDir=installer
 Compression=lzma
 SolidCompression=yes

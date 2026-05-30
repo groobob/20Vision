@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+  <channel>
+    <title>20Vision</title>
+    <description>Most recent changes with links to updates</description>
+    <language>en</language>
+    <item>
+      <title>20Vision 1.1</title>
+      <pubDate>Fri, 29 May 2026 22:28:30 -04:00</pubDate>
+      <sparkle:version>1.1</sparkle:version>
+      <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
+      <enclosure url="https://github.com/groobob/20Vision/releases/download/v1.1/20Vision-v1.1-setup-win-x64.exe" sparkle:version="1.1" sparkle:shortVersionString="1.1" length="33046454" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:signature="uRCgF6Vx9CEAWQ0VwxOJL9H0QY+mvXEIZmhKuN3FDn9xO+/WEanEQmRTO6Ritn9Qsd9iFsnt28VYoBObmaLpBg==" />
+    </item>
+  </channel>
+</rss>

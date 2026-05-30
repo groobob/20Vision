@@ -4,11 +4,14 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Threading;
+using Microsoft.Win32;
+using NetSparkleUpdater;
+using NetSparkleUpdater.Enums;
+using NetSparkleUpdater.SignatureVerifiers;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using Microsoft.Win32;
 
 namespace _20Vision;
 public partial class MainWindow : Window
@@ -47,6 +50,8 @@ public partial class MainWindow : Window
     public string settingsPath;
     public Settings settings = new Settings();
 
+    private SparkleUpdater sparkle;
+
     private int tutorialStage = 0;
     private Button[] frequencyButtons;
     private Button[] durationButtons;
@@ -61,6 +66,7 @@ public partial class MainWindow : Window
         WelcomeTutorial();
         HideFromEverything();
         StartCounter();
+        AutoUpdateCheck();
     }
     
     public void SaveSettings()
@@ -115,6 +121,21 @@ public partial class MainWindow : Window
         displayAlertTimerCheck.IsChecked = settings.displayAlertTimer;
         intrusiveAlertCheck.IsChecked = settings.intrusiveAlert;
         buhCheck.IsChecked = settings.buh;
+    }
+
+    private void AutoUpdateCheck()
+    {
+        var iconUri = new Uri("avares://20Vision/Assets/20vision.ico");
+        var icon = new Avalonia.Controls.WindowIcon(AssetLoader.Open(iconUri));
+
+        sparkle = new SparkleUpdater("https://raw.githubusercontent.com/groobob/20Vision/main/appcast.xml",
+                  new Ed25519Checker(SecurityMode.Strict, "KVnROBIWEyqA/I8PyMULw7L0baOG7rnEgcbL/8fq54Q="))
+        {
+            UIFactory = new NetSparkleUpdater.UI.Avalonia.UIFactory(icon),
+            RelaunchAfterUpdate = true,
+        };
+
+        sparkle.StartLoop(true);
     }
 
     private void WelcomeTutorial()
