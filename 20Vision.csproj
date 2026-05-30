@@ -9,6 +9,11 @@
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 	<ApplicationIcon>Assets\20vision.ico</ApplicationIcon>
   </PropertyGroup>
+	<PropertyGroup>
+		<Version>1.0</Version>
+		<AssemblyVersion>1.0</AssemblyVersion>
+		<AssemblyTitle>20Vision</AssemblyTitle>
+	</PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\20vision.ico" />
     <None Remove="Assets\AlertTutorial.png" />

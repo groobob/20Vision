@@ -9,6 +9,7 @@ using NetSparkleUpdater;
 using NetSparkleUpdater.Enums;
 using NetSparkleUpdater.SignatureVerifiers;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.Json;
@@ -66,6 +67,10 @@ public partial class MainWindow : Window
         WelcomeTutorial();
         HideFromEverything();
         StartCounter();
+
+        var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        Debug.WriteLine($"App version: {version}");
+
         AutoUpdateCheck();
     }
     
@@ -129,13 +134,18 @@ public partial class MainWindow : Window
         var icon = new Avalonia.Controls.WindowIcon(AssetLoader.Open(iconUri));
 
         sparkle = new SparkleUpdater("https://raw.githubusercontent.com/groobob/20Vision/main/appcast.xml",
-                  new Ed25519Checker(SecurityMode.Strict, "KVnROBIWEyqA/I8PyMULw7L0baOG7rnEgcbL/8fq54Q="))
+                  new Ed25519Checker(SecurityMode.Strict, "wklyTod/JLLvCTtXabnaZDqtEQOeii5BT46nxJQB1d8="))
         {
             UIFactory = new NetSparkleUpdater.UI.Avalonia.UIFactory(icon),
             RelaunchAfterUpdate = true,
         };
 
         sparkle.StartLoop(true);
+
+        sparkle.UpdateDetected += (sender, args) =>
+        Console.WriteLine($"Update detected: {args.LatestVersion}");
+
+        
     }
 
     private void WelcomeTutorial()
