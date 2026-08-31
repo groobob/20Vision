@@ -10,8 +10,8 @@
 	<ApplicationIcon>Assets\20vision.ico</ApplicationIcon>
   </PropertyGroup>
 	<PropertyGroup>
-		<Version>1.0</Version>
-		<AssemblyVersion>1.0</AssemblyVersion>
+		<Version>1.1</Version>
+		<AssemblyVersion>1.1</AssemblyVersion>
 		<AssemblyTitle>20Vision</AssemblyTitle>
 	</PropertyGroup>
   <ItemGroup>
