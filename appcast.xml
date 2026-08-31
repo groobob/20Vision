@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
   <channel>
-    <title>20Vision</title>
+    <title>Application</title>
     <description>Most recent changes with links to updates</description>
     <language>en</language>
     <item>
-      <title>20Vision 1.1</title>
-      <pubDate>Fri, 29 May 2026 22:28:30 -04:00</pubDate>
-      <sparkle:version>1.1.0.0</sparkle:version>
-      <sparkle:shortVersionString>1.1.0.0</sparkle:shortVersionString>
-      <enclosure url="https://github.com/groobob/20Vision/releases/download/v1.1/20Vision-v1.1.0.0-setup-win-x64.exe" sparkle:version="1.1.0.0" sparkle:shortVersionString="1.1.0.0" length="33046454" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:signature="bIt2uri0yEF5BEzf2xLC/vW74ApEoaUpXiE8BlW4mSbAvU0nnQDYvTRecsXgY6oIaFsgMaxEYrCd51OqnymNDQ==" />
+      <title>Application 1.1+09c51b3f23ee92d22f904c4ae2387826d6d82dbf</title>
+      <pubDate>Tue, 24 Mar 2026 23:17:45 -04:00</pubDate>
+      <sparkle:version>1.1+09c51b3f23ee92d22f904c4ae2387826d6d82dbf</sparkle:version>
+      <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
+      <enclosure url="20Vision.exe" sparkle:version="1.1+09c51b3f23ee92d22f904c4ae2387826d6d82dbf" sparkle:shortVersionString="1.1" length="327168" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:edSignature="MTakaSlVECduyTBM3nmEgCNFzhhIEa9eGa88+h9F2UHtq4fPO41p3iPFXVQNakDyactrjvMZp/GQ/fKB3jnbDg==" />
     </item>
   </channel>
 </rss>

@@ -142,6 +142,8 @@ public partial class MainWindow : Window
 
         sparkle.StartLoop(true);
 
+        //sparkle.LogWriter = new LogWriter(LogWriterOutputMode.Console);
+
         sparkle.UpdateDetected += (sender, args) =>
         Console.WriteLine($"Update detected: {args.LatestVersion}");
 
