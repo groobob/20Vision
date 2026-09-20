@@ -146,8 +146,6 @@ public partial class MainWindow : Window
 
         sparkle.UpdateDetected += (sender, args) =>
         Console.WriteLine($"Update detected: {args.LatestVersion}");
-
-        
     }
 
     private void WelcomeTutorial()
