@@ -5,11 +5,11 @@
     <description>Most recent changes with links to updates</description>
     <language>en</language>
     <item>
-      <title>Application 1.1+1a013cc84ac08a1bddf41eae705f87d533e39f84</title>
+      <title>Application 1.2+b3e72ee6456085598f8de95e945685b6b461e820</title>
       <pubDate>Tue, 24 Mar 2026 23:17:45 -04:00</pubDate>
-      <sparkle:version>1.1+1a013cc84ac08a1bddf41eae705f87d533e39f84</sparkle:version>
-      <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
-      <enclosure url="20Vision.exe" sparkle:version="1.1+1a013cc84ac08a1bddf41eae705f87d533e39f84" sparkle:shortVersionString="1.1" length="327168" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:edSignature="2kmgTHYwEB9FHERgwJonEj28aYKufU4CoCk2dozM2LXej7KMl3ahPB9Dqv2fHv+ftnbHoUgNAD+0f5QAar4iDw==" />
+      <sparkle:version>1.2+b3e72ee6456085598f8de95e945685b6b461e820</sparkle:version>
+      <sparkle:shortVersionString>1.2</sparkle:shortVersionString>
+      <enclosure url="20Vision.exe" sparkle:version="1.2+b3e72ee6456085598f8de95e945685b6b461e820" sparkle:shortVersionString="1.2" length="327168" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:edSignature="vb1v5+SQV0dR0XJOsDFsfgFTefUCNHm3kIIodsnPgIXGkNeZFZ5sk0mn5Q2MIj16+UuJiQmMjIYimhutrMcrCw==" />
     </item>
   </channel>
 </rss>
